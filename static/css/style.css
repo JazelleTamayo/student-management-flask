@@ -1,0 +1,288 @@
+/* Full page gradient background - modern soft theme */
+body {
+    background: linear-gradient(to bottom right, #E0F7FA, #80CBC4); /* soft cyan/teal */
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Make form and table cards stand out */
+.form-card, .table-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* subtle shadow for modern look */
+    margin-top: 20px;
+}
+
+/* Table header */
+.w3-twothird.w3-container th {
+    background: linear-gradient(to right, #009688, #26A69A); /* modern teal gradient */
+    color: white;
+    padding: 14px 16px;
+    text-align: left;
+    border-radius: 8px 8px 0 0; /* rounded top corners */
+}
+
+/* Table body cells */
+.w3-twothird.w3-container td {
+    padding: 12px 16px;
+    text-align: left;
+    background-color: rgba(38, 166, 154, 0.1); /* light transparent teal */
+    border-bottom: 1px solid rgba(38, 166, 154, 0.2); /* subtle row separation */
+}
+
+/* Alternating row color for clarity */
+.w3-twothird.w3-container tr:nth-child(even) td {
+    background-color: rgba(38, 166, 154, 0.05);
+}
+
+/* Hover effect */
+.w3-twothird.w3-container tr:hover td {
+    background-color: rgba(38, 166, 154, 0.2);
+}
+
+.w3-twothird {
+    margin-top: 20px; /* same spacing as form */
+}
+
+/* Fieldset styling - modern soft border */
+fieldset {
+    border: 3px solid #26A69A;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Inputs and select boxes */
+input[type="text"],
+input[type="number"],
+select {
+    border: 1px solid #B2DFDB;
+    border-radius: 10px;
+    padding: 12px 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    background-color: #F1FAFA; /* light modern background */
+    transition: 0.3s;
+}
+
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #009688;
+    background-color: #E0F7FA;
+    outline: none;
+}
+
+/* Buttons - modern gradient style */
+input[type="submit"],
+input[type="reset"] {
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+input[type="submit"] {
+    background: linear-gradient(to right, #009688, #26A69A);
+    color: white;
+    margin-bottom: 5px;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(to right, #26A69A, #4DB6AC);
+}
+
+input[type="reset"] {
+    background: linear-gradient(to right, #62696c, #8e979a);
+    color: #333;
+}
+
+input[type="reset"]:hover {
+    background: linear-gradient(to right, #CFD8DC, #ECEFF1);
+}
+
+/* Avatar container & image */
+.avatar-container {
+    position: relative;
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+}
+
+#avatarPreview {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #B2DFDB;
+    transition: 0.3s;
+}
+
+#avatarPreview:hover {
+    opacity: 0.9;
+}
+
+.avatar-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+    border: 7px solid #B2DFDB;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.avatar-container:hover .avatar-icon {
+    background-color: #E0F7FA;
+}
+
+/* Modal Overlay */
+#errorModal {
+    display: none; /* hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* semi-transparent dark overlay */
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Box */
+#errorModal .w3-modal-content {
+    background: linear-gradient(to bottom right, #E0F7FA, #80CBC4); /* soft cyan/teal */
+    padding: 35px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 95%;
+    max-width: 500px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #004D40; /* dark teal for text */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Title */
+#errorModal .modal-title {
+    margin: 0 0 10px 0;
+    color: #00796B; /* theme teal */
+}
+
+/* Modal Message Text */
+#errorModal #errorMessage {
+    font-size: 16px; /* bigger font */
+    margin-bottom: 20px;
+    color: black; /* change text to black */
+}
+
+/* Modal Button */
+.modal-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    background: linear-gradient(to right, #009688, #26A69A); /* modern gradient */
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-btn:hover {
+    background: linear-gradient(to right, #26A69A, #4DB6AC);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Delete Confirmation Modal Overlay */
+#deleteModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* semi-transparent dark overlay */
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Box */
+#deleteModal .w3-modal-content {
+    background: linear-gradient(to bottom right, #E0F7FA, #80CBC4); /* soft cyan/teal */
+    padding: 30px 35px;      /* slightly bigger modal */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #004D40;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Title */
+#deleteModal h4 {
+    margin: 0 0 10px 0;
+    color: #00796B; /* same theme teal as error modal */
+}
+
+/* Modal Message */
+#deleteModal p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: black; /* uniform with error modal */
+}
+
+/* Modal Buttons */
+#deleteModal button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+}
+
+/* Confirm Delete Button - same style as error modal button */
+#deleteModal #confirmDelete {
+    background: linear-gradient(to right, #009688, #26A69A);
+    color: white;
+}
+
+#deleteModal #confirmDelete:hover {
+    background: linear-gradient(to right, #26A69A, #4DB6AC);
+}
+
+/* Cancel Button - same as form reset button */
+#deleteModal button.cancel {
+    background: linear-gradient(to right, #62696c, #8e979a);
+    color: white;
+}
+
+#deleteModal button.cancel:hover {
+    background: linear-gradient(to right, #CFD8DC, #ECEFF1);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}

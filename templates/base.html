@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Management v1.0</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <div class="w3-bar w3-container" style="position:sticky;top:0;background-color: #192231;color:white;padding: 12px 20px;  z-index: 1000;">
+            <center><h4><b>Student Management v1.0</h4></b><center>
+        </div>
+
+        <div class ="w3-container w3-padding">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <p style="text-align: center;">
+            &copy; JAZELLE R. TAMAYO, 2025
+        </p>
+
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>
