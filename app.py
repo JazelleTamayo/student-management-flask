@@ -78,6 +78,8 @@ def update_student(idno):
     firstname = request.form.get("firstname", "").strip()
     course = request.form.get("course", "").strip()
     level = request.form.get("level", "").strip()
+    # GET the hidden current image
+    current_image = request.form.get("current_image", "")
 
     # get existing record
     existing = getrecord("students", idno=idno)
@@ -91,17 +93,8 @@ def update_student(idno):
             remove_image(old_image)
         final_image = saved
     else:
-        # keep old image, optionally rename if ID changed
-        if old_image and new_idno and new_idno != idno:
-            ext = old_image.rsplit(".", 1)[1]
-            new_image_name = secure_filename(f"{new_idno}_{existing[0]['idno']}.{ext}")
-            os.rename(
-                os.path.join(app.config["UPLOAD_FOLDER"], old_image),
-                os.path.join(app.config["UPLOAD_FOLDER"], new_image_name)
-            )
-            final_image = new_image_name
-        else:
-            final_image = old_image
+        # No new image uploaded, keep current image from hidden input
+        final_image = current_image or old_image
 
     update_data = {
         "lastname": lastname,
@@ -119,9 +112,9 @@ def update_student(idno):
         where_id = idno
 
     updaterecord("students", **{"idno": where_id, **update_data})
-
     flash("Student updated", "success")
     return redirect(url_for("index"))
+
 
 @app.route("/delete/<idno>")
 def delete_student(idno):

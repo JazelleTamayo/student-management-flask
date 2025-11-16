@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     const idnoField = document.getElementById('idno');
@@ -7,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const courseField = document.getElementById('course');
     const levelField = document.getElementById('level');
     const editIdField = document.getElementById('edit_idno');
+    const currentImageField = document.getElementById('current_image');
     const saveBtn = form ? form.querySelector('input[type="submit"]') : null;
 
     const deleteModal = document.getElementById('deleteModal');
@@ -62,6 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 avatarPreview.src = avatarPreview.dataset.default;
             }
 
+            // Set hidden current_image field
+            if (currentImageField) {
+                currentImageField.value = row.dataset.image || '';
+            }
+
             if (saveBtn) saveBtn.value = 'UPDATE';
             form.scrollIntoView({behavior: 'smooth', block: 'center'});
         });
@@ -100,42 +105,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Form submit (add or update)
-// Form submit (add or update)
-if (form) {
-    form.addEventListener('submit', e => {
-        e.preventDefault();
+    if (form) {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
 
-        const idno = (idnoField.value || '').trim();
-        const lastname = (lastnameField.value || '').trim();
-        const firstname = (firstnameField.value || '').trim();
-        const course = (courseField.value || '').trim();
-        const level = (levelField.value || '').trim();
+            const idno = (idnoField.value || '').trim();
+            const lastname = (lastnameField.value || '').trim();
+            const firstname = (firstnameField.value || '').trim();
+            const course = (courseField.value || '').trim();
+            const level = (levelField.value || '').trim();
 
-        // Check if all fields are filled
-        if (!idno || !lastname || !firstname || !course || !level) {
-            errorMessageEl.textContent = 'All fields are required. Please complete the form.';
-            errorModal.style.display = 'block';
-            return;
-        }
+            // Check if all fields are filled
+            if (!idno || !lastname || !firstname || !course || !level) {
+                errorMessageEl.textContent = 'All fields are required. Please complete the form.';
+                errorModal.style.display = 'block';
+                return;
+            }
 
-        // Check for duplicate ID number (only when adding new)
-        if (!editIdField.value) { 
+            // Check for duplicate ID number (works for both add and edit)
             const existingIds = Array.from(document.querySelectorAll('tr[data-idno]'))
                 .map(row => row.dataset.idno);
 
-            if (existingIds.includes(idno)) {
+            const currentId = editIdField.value || ""; // original ID if editing
+            if (existingIds.includes(idno) && idno !== currentId) {
                 errorMessageEl.textContent = `Student ID ${idno} already exists. Please use a unique ID number.`;
                 errorModal.style.display = 'block';
                 return;
             }
-        }
 
-        // Proceed with form submission (add or update)
-        form.action = editIdField.value ? `/update/${editIdField.value}` : '/add';
-        form.submit();
-    });
-}
+            // Include current_image in form submission
+            if (currentImageField && !imageInput.value) {
+                currentImageField.value = currentImageField.value; // keep current image if no new file
+            }
 
+            // Proceed with submission
+            form.action = editIdField.value ? `/update/${editIdField.value}` : '/add';
+            form.submit();
+        });
+    }
 
     // Reset form
     const resetBtn = form.querySelector('input[type="reset"]');
@@ -143,6 +150,7 @@ if (form) {
         resetBtn.addEventListener('click', () => {
             if (saveBtn) saveBtn.value = 'SAVE';
             if (editIdField) editIdField.value = '';
+            if (currentImageField) currentImageField.value = '';
             avatarPreview.src = avatarPreview.dataset.default;
             if (imageInput) imageInput.value = '';
         });
